@@ -17,14 +17,14 @@
     along with org.everit.osgi.balance.ri.schema.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<databaseChangeLog objectQuotingStrategy="QUOTE_ALL_OBJECTS" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+<databaseChangeLog objectQuotingStrategy="QUOTE_ALL_OBJECTS" logicalFilePath="org.everit.osgi.balance.ri" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<include file="eosgi:org.everit.osgi.resource" />
 
-	<changeSet id="1" author="everit">
+	<changeSet id="1.0.0" author="everit">
 
 		<createTable tableName="bal_account">
 			<column name="account_id" type="bigint" autoIncrement="true">
