@@ -123,4 +123,44 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>everit.public</id>
+			<url>http://repository.everit.biz/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>everit-public-snapshot</id>
+			<url>https://repo.everit.biz/artifactory/public-snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>everit-public-release</id>
+			<url>https://repo.everit.biz/artifactory/public-release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>everit.public.snapshots</id>
+			<url>https://repo.everit.biz/artifactory/public-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
