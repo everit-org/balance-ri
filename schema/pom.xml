@@ -25,7 +25,7 @@
 	<parent>
 		<groupId>org.everit.config</groupId>
 		<artifactId>org.everit.config.oss</artifactId>
-		<version>5.0.1</version>
+		<version>5.0.2</version>
 	</parent>
 
 	<groupId>org.everit.osgi</groupId>
@@ -44,6 +44,7 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
+                <version>2.5.3</version>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
@@ -56,7 +57,7 @@
 							org.everit.osgi.balance.ri.schema.qdsl
 						</Export-Package>
 						<Require-Capability>
-							liquibase.schema;filter:=(name=org.everit.osgi.resource)
+							liquibase.schema;filter:="(name=org.everit.osgi.resource)"
 						</Require-Capability>
 						<Provide-Capability>
 							liquibase.schema;name=org.everit.osgi.balance.ri;resource=/META-INF/liquibase/balance.ri.liquibase.xml;lqmg.config.resource=/META-INF/liquibase/balance.ri.lqmg.xml

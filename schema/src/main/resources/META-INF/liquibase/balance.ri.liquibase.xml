@@ -17,94 +17,94 @@
     along with org.everit.osgi.balance.ri.schema.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<databaseChangeLog objectQuotingStrategy="QUOTE_ALL_OBJECTS" logicalFilePath="org.everit.osgi.balance.ri" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+<databaseChangeLog objectQuotingStrategy="QUOTE_ALL_OBJECTS" logicalFilePath="org.everit.osgi.balance.ri"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<include file="eosgi:org.everit.osgi.resource" />
+  <include file="eosgi:org.everit.osgi.resource" />
 
-	<changeSet id="1.0.0" author="everit">
+  <changeSet id="1.0.0" author="everit">
 
-		<createTable tableName="bal_account">
-			<column name="account_id" type="bigint" autoIncrement="true">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
-			<column name="available_balance" type="decimal(16,4)" defaultValueNumeric="0">
-				<constraints nullable="false" />
-			</column>
-			<column name="blocked_balance" type="decimal(16,4)" defaultValueNumeric="0">
-				<constraints nullable="false" />
-			</column>
-			<column name="active" type="boolean">
-				<constraints nullable="false" />
-			</column>
-			<column name="owner_resource_id" type="bigint">
-				<constraints nullable="false" />
-			</column>
-			<column name="resource_id" type="bigint">
-				<constraints nullable="false" unique="true" />
-			</column>
-		</createTable>
+    <createTable tableName="bal_account">
+      <column name="account_id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="available_balance" type="decimal(16,4)" defaultValueNumeric="0">
+        <constraints nullable="false" />
+      </column>
+      <column name="blocked_balance" type="decimal(16,4)" defaultValueNumeric="0">
+        <constraints nullable="false" />
+      </column>
+      <column name="active" type="boolean">
+        <constraints nullable="false" />
+      </column>
+      <column name="owner_resource_id" type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="resource_id" type="bigint">
+        <constraints nullable="false" unique="true" />
+      </column>
+    </createTable>
 
-		<addForeignKeyConstraint constraintName="fk_account_owner_resource" baseTableName="bal_account"
-			baseColumnNames="owner_resource_id" referencedTableName="res_resource" referencedColumnNames="resource_id" />
+    <addForeignKeyConstraint constraintName="fk_account_owner_resource" baseTableName="bal_account"
+      baseColumnNames="owner_resource_id" referencedTableName="res_resource" referencedColumnNames="resource_id" />
 
-		<addForeignKeyConstraint constraintName="fk_account_resource" baseTableName="bal_account"
-			baseColumnNames="resource_id" referencedTableName="res_resource" referencedColumnNames="resource_id" />
+    <addForeignKeyConstraint constraintName="fk_account_resource" baseTableName="bal_account"
+      baseColumnNames="resource_id" referencedTableName="res_resource" referencedColumnNames="resource_id" />
 
-		<createTable tableName="bal_transfer">
-			<column name="transfer_id" type="bigint" autoIncrement="true">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
-			<column name="transfer_pair_id" type="java.sql.Types.VARCHAR(32)">
-				<constraints nullable="false" />
-			</column>
-			<column name="created_at" type="datetime">
-				<constraints nullable="false" />
-			</column>
-			<column name="accomplished_at" type="datetime">
-				<constraints nullable="true" />
-			</column>
-			<column name="transfer_code" type="java.sql.Types.VARCHAR(255)">
-				<constraints nullable="false" />
-			</column>
-			<column name="creditor_account_id" type="bigint">
-				<constraints nullable="false" />
-			</column>
-			<column name="debtor_account_id" type="bigint">
-				<constraints nullable="false" />
-			</column>
-			<column name="amount" type="decimal(16,4)">
-				<constraints nullable="false" />
-			</column>
-			<column name="transfer_status" type="java.sql.Types.VARCHAR(31)">
-				<constraints nullable="false" />
-			</column>
-			<column name="last_creditor_available_balance" type="decimal(16,4)">
-				<constraints nullable="false" />
-			</column>
-			<column name="last_creditor_blocked_balance" type="decimal(16,4)">
-				<constraints nullable="false" />
-			</column>
-			<column name="notes" type="java.sql.Types.VARCHAR(1023)">
-				<constraints nullable="false" />
-			</column>
-			<column name="resource_id" type="bigint">
-				<constraints nullable="false" />
-			</column>
-		</createTable>
+    <createTable tableName="bal_transfer">
+      <column name="transfer_id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="transfer_pair_id" type="java.sql.Types.VARCHAR(32)">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_at" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column name="accomplished_at" type="datetime">
+        <constraints nullable="true" />
+      </column>
+      <column name="transfer_code" type="java.sql.Types.VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="creditor_account_id" type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="debtor_account_id" type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="amount" type="decimal(16,4)">
+        <constraints nullable="false" />
+      </column>
+      <column name="transfer_status" type="java.sql.Types.VARCHAR(31)">
+        <constraints nullable="false" />
+      </column>
+      <column name="last_creditor_available_balance" type="decimal(16,4)">
+        <constraints nullable="false" />
+      </column>
+      <column name="last_creditor_blocked_balance" type="decimal(16,4)">
+        <constraints nullable="false" />
+      </column>
+      <column name="notes" type="java.sql.Types.VARCHAR(1023)">
+        <constraints nullable="false" />
+      </column>
+      <column name="resource_id" type="bigint">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
 
-		<addForeignKeyConstraint constraintName="fk_transfer_creditor" baseTableName="bal_transfer"
-			baseColumnNames="creditor_account_id" referencedTableName="bal_account" referencedColumnNames="account_id" />
+    <addForeignKeyConstraint constraintName="fk_transfer_creditor" baseTableName="bal_transfer"
+      baseColumnNames="creditor_account_id" referencedTableName="bal_account" referencedColumnNames="account_id" />
 
-		<addForeignKeyConstraint constraintName="fk_transfer_debtor" baseTableName="bal_transfer"
-			baseColumnNames="debtor_account_id" referencedTableName="bal_account" referencedColumnNames="account_id" />
+    <addForeignKeyConstraint constraintName="fk_transfer_debtor" baseTableName="bal_transfer"
+      baseColumnNames="debtor_account_id" referencedTableName="bal_account" referencedColumnNames="account_id" />
 
-		<addForeignKeyConstraint constraintName="fk_transfer_resource" baseTableName="bal_transfer"
-			baseColumnNames="resource_id" referencedTableName="res_resource" referencedColumnNames="resource_id" />
+    <addForeignKeyConstraint constraintName="fk_transfer_resource" baseTableName="bal_transfer"
+      baseColumnNames="resource_id" referencedTableName="res_resource" referencedColumnNames="resource_id" />
 
-	</changeSet>
+  </changeSet>
 
 </databaseChangeLog>
 
